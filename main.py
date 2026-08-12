@@ -10,7 +10,8 @@ from telegram.ext import (
     filters,
 )
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+# Token to'g'ridan-to'g'ri kodning o'ziga yozildi
+TELEGRAM_BOT_TOKEN = "8929208171:AAFC41QUvc0pMWvf9Hr0yANdGCTI8vuYVcg"
 ADMIN_PASSWORD = "7777"
 
 admin_users = set()
@@ -18,7 +19,6 @@ user_balances = {}
 user_collections = {}
 
 
-# Waifu.im API'dan tasodifiy rasm olib kelish funksiyasi
 async def fetch_random_waifu():
   url = "https://api.waifu.im/search"
   async with aiohttp.ClientSession() as session:
@@ -130,7 +130,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
       if not is_admin:
         user_balances[user_id] -= price
 
-      # Waifu.im API orqali rasm olib kelamiz
       waifu_url = await fetch_random_waifu()
 
       if waifu_url:
@@ -165,8 +164,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
       await query.message.reply_text(
           f"📦 Siz jami {len(collection)} ta waifu yig'gansiz!"
       )
-      # Oxirgi tushgan rasmlarni ko'rsatish mumkin
-      for img_url in collection[-3:]:  # Oxirgi 3 tasini yuboradi
+      for img_url in collection[-3:]:
         await query.message.reply_photo(photo=img_url)
 
   elif query.data == "back_home":
@@ -230,4 +228,4 @@ def main():
 
 if __name__ == "__main__":
   main()
-      
+    
